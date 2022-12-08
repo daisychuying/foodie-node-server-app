@@ -1,9 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import session from 'express-session'
-
 import mongoose from "mongoose";
-
 
 const options = {
     useNewUrlParser: true,
@@ -14,14 +12,16 @@ const options = {
     socketTimeoutMS: 45000,
     family: 4
 }
-
-mongoose.connect('mongodb://localhost:27017/foodie', options)
+const CONNECTION_STRING = 'mongodb+srv://foodie:pHBlAspCsTlsX0Ay@cluster0.fflj4z3.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(CONNECTION_STRING, options)
 
 const app = express();
+
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000'
 }))
+
 app.use(session({
     secret: 'should be an environment variable',
     resave: false,
