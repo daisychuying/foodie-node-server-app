@@ -15,8 +15,8 @@ const options = {
     socketTimeoutMS: 45000,
     family: 4
 }
-
-mongoose.connect('mongodb://localhost:27017/foodie', options)
+const CONNECTION_STRING = 'mongodb+srv://foodie:pHBlAspCsTlsX0Ay@cluster0.fflj4z3.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(CONNECTION_STRING, options)
 
 const app = express();
 app.use(cors({
