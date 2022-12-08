@@ -4,18 +4,42 @@ let currentUser = null
 
 const UsersController = (app) => {
 
+    // Users
     const findAllUsers = async (req, res) => {
         const users = await userDao.findAllUsers()
         res.json(users)
     }
+
+    const findUserById = async (req, res) => {
+        const uid = req.params.uid
+        const user = await userDao.findUserById(uid)
+        if (user) {
+            res.json(user)
+            return
+        }
+        res.sendStatus(404)
+    }
+
     const createUser = async (req, res) => {
         const newUser = req.body;
         const actualUser = await userDao.createUser(newUser)
         res.json(actualUser)
     }
-    const updateUser = () => {}
-    const deleteUser = () => {}
 
+    const updateUser = async (req, res) => {
+        const uid = req.params.uid;
+        const updates = req.body
+        const status =await userDao.updateUser(uid, updates)
+        res.json(status)
+    }
+    const deleteUser = async (req, res) => {
+        const uid = req.params.uid
+        const status = await userDao.deleteUser(uid)
+        res.json(status)
+    }
+
+
+    // User Profile
     const register = async (req, res) => {
         const user = req.body;
         const existingUser = await userDao
@@ -55,26 +79,17 @@ const UsersController = (app) => {
         }
     }
 
-    const findUserById = async (req, res) => {
-        const uid = req.params.uid
-        const user = await userDao.findUserById(uid)
-        if (user) {
-            res.json(user)
-            return
-        }
-        res.sendStatus(404)
-    }
 
-    app.get('/users', findAllUsers)
-    app.get('/users/:uid', findUserById)
-    app.post('/users', createUser)
-    app.put('/users/:uid', updateUser)
-    app.delete('/users/:uid', deleteUser)
+    app.get('/api/users', findAllUsers)
+    app.get('/api/users/:uid', findUserById)
+    app.post('/api/users', createUser)
+    app.put('/api/users/:uid', updateUser)
+    app.delete('/api/users/:uid', deleteUser)
 
-    app.post('/register', register)
-    app.post('/login', login)
-    app.post('/logout', logout)
-    app.post('/profile', profile)
+    app.post('/api/register', register)
+    app.post('/api/login', login)
+    app.post('/api/logout', logout)
+    app.post('/api/profile', profile)
 }
 
 export default UsersController

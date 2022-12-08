@@ -4,6 +4,7 @@ import session from 'express-session'
 
 import mongoose from "mongoose";
 
+import UsersController from "./users/users-controller.js";
 
 const options = {
     useNewUrlParser: true,
@@ -29,5 +30,8 @@ app.use(session({
     cookie: { secure: false }
 }))
 app.use(express.json())
+
+// Controllers
+UsersController(app)
 
 app.listen(4000)
