@@ -5,6 +5,7 @@ import session from 'express-session'
 import mongoose from "mongoose";
 
 import UsersController from "./users/users-controller.js";
+import BookmarksController from "./bookmarks/bookmarks-controller.js";
 
 const options = {
     useNewUrlParser: true,
@@ -34,5 +35,6 @@ app.use(express.json())
 
 // Controllers
 UsersController(app)
+BookmarksController(app);
 
 app.listen(4000)
