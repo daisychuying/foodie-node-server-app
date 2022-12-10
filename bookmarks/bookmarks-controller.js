@@ -9,15 +9,38 @@ const BookmarksController = (app) => {
         res.json(actualBookmark);
     }
 
+    const deleteBookmark = async (req, res) => {
+        const {user, recipeID} = req.params;
+        const bookmark = await dao.findUserHasBookmarked(user, recipeID);
+        if (bookmark) {
+            const status = await dao.deleteBookmark(bookmark._id);
+            res.json(status);
+        } else {
+            res.json(404)
+        }
+    }
+
     const findBookmarksByUser = async (req, res) => {
         const user = req.params.user;
         const bookmarks = await dao.findBooksmarkByUser(user);
         res.json(bookmarks);
     }
 
+    const findUserHasBookmarked = async (req, res) => {
+        const {user, recipeID} = req.params;
+        const bookmark = await dao.findUserHasBookmarked(user, recipeID);
+        if (bookmark) {
+            res.json(true)
+        } else {
+            res.json(false)
+        }
+    }
+
 
     app.post('/api/bookmarks', createBookmark);
     app.get('/api/users/:user/bookmarks', findBookmarksByUser);
+    app.get('/api/users/:user/bookmarks/:recipeID', findUserHasBookmarked);
+    app.delete('/api/users/:user/bookmarks/:recipeID', deleteBookmark);
 }
 
 export default BookmarksController;
