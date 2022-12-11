@@ -32,6 +32,7 @@ const UsersController = (app) => {
         const status =await userDao.updateUser(uid, updates)
         res.json(status)
     }
+
     const deleteUser = async (req, res) => {
         const uid = req.params.uid
         const status = await userDao.deleteUser(uid)

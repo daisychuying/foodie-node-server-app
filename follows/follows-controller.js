@@ -18,9 +18,30 @@ const FollowsController = (app) => {
         res.json(followed)
     }
 
-    app.post('/follows', followUser)
-    app.get('/users/:followed/followers', findFollowers)
-    app.get('/users/:follower/following', findFollowing)
+    const findUserHasFollowed = async (req, res) => {
+        const followed = req.params.followed
+        const follower = req.params.follower
+        const existingFollow = await dao.findUserHasFollowed(followed, follower)
+        res.json(existingFollow)
+    }
+
+    const unfollowUser = async (req, res) => {
+        const followed = req.params.followed
+        const follower = req.params.follower
+        const existingFollow = await dao.findUserHasFollowed(followed, follower)
+        if (existingFollow){
+            const status = await dao.unfollowUser(existingFollow._id)
+            res.json(status)
+        } else {
+            res.json(404)
+        }
+    }
+
+    app.post('/api/follows', followUser)
+    app.get('/api/users/:followed/followers', findFollowers)
+    app.get('/api/users/:follower/following', findFollowing)
+    app.get('/api/users/:followed/:follower', findUserHasFollowed)
+    app.delete('/api/users/:followed/:follower', unfollowUser)
 }
 
 export default FollowsController
