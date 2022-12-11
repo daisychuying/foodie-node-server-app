@@ -7,7 +7,7 @@ export const deleteBookmark = (bookmarkID) =>
     bookmarksModel.deleteOne({_id: bookmarkID})
 
 export const findBooksmarkByUser = (user) =>
-    bookmarksModel.find({user})
+    bookmarksModel.find({user}).sort({$natural:-1})
 
 export const findUserHasBookmarked = (user, recipeID) =>
     bookmarksModel.findOne({user, recipeID})
