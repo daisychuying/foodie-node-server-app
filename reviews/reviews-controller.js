@@ -15,7 +15,14 @@ const ReviewsController = (app) => {
         res.json(reviews);
     }
 
+    const deleteReview = async (req, res) => {
+        const {reviewID} = req.params;
+        const status = await dao.deleteReview(reviewID);
+        res.json(status);
+    }
+
     app.post('/api/reviews', createReview);
+    app.delete('/api/reviews/:reviewID', deleteReview);
     app.get('/api/recipes/:recipeID/reviews', findReviewsByRecipe);
 
 }
