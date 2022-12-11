@@ -31,7 +31,7 @@ const FollowsController = (app) => {
         const existingFollow = await dao.findUserHasFollowed(followed, follower)
         if (existingFollow){
             const status = await dao.unfollowUser(existingFollow._id)
-            res.json(status)
+            res.json(existingFollow)
         } else {
             res.json(404)
         }
