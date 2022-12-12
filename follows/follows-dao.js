@@ -1,5 +1,4 @@
 import followsModel from "./follows-model.js";
-import bookmarksModel from "../bookmarks/bookmarks-model.js";
 
 export const followUser = (follow) =>
     followsModel.create(follow)
@@ -17,5 +16,5 @@ export const findFollowing = (follower) =>
 export const findUserHasFollowed = (followed, follower) =>
     followsModel.findOne({followed, follower})
 
-export const unfollowUser = (followId) =>
-    followsModel.deleteOne({_id: followId})
+export const unfollowUser = (followID) =>
+    followsModel.deleteOne({_id: followID})

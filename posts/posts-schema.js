@@ -7,7 +7,7 @@ const postsSchema = mongoose.Schema({
     },
     title: {type: String, required: true},
     ingredients: {type: String},
-    readyInMinutes: {type: Number, default: 0},
+    readyInMinutes: {type: String},
     instructions: {type: String},
 }, {collection: "posts"})
 

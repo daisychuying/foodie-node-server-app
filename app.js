@@ -8,6 +8,7 @@ import UsersController from "./users/users-controller.js";
 import BookmarksController from "./bookmarks/bookmarks-controller.js";
 import ReviewsController from "./reviews/reviews-controller.js";
 import FollowsController from "./follows/follows-controller.js";
+import PostsController from "./posts/posts-controller.js";
 
 const options = {
     useNewUrlParser: true,
@@ -40,5 +41,6 @@ UsersController(app)
 BookmarksController(app);
 ReviewsController(app);
 FollowsController(app);
+PostsController(app);
 
 app.listen(4000)
