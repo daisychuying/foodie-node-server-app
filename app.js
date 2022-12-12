@@ -24,10 +24,16 @@ const CONNECTION_STRING = 'mongodb+srv://foodie:pHBlAspCsTlsX0Ay@cluster0.fflj4z
 mongoose.connect(CONNECTION_STRING, options)
 
 const app = express();
+// app.use(cors({
+//     credentials: true,
+//     origin: 'http://localhost:3000'
+// }))
+
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: 'https://6396a5ef1800390009574891--foodie-react-web.netlify.app/'
 }))
+
 app.use(session({
     secret: 'should be an environment variable',
     resave: false,
