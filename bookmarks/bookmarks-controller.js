@@ -22,7 +22,7 @@ const BookmarksController = (app) => {
 
     const findBookmarksByUser = async (req, res) => {
         const user = req.params.user;
-        const bookmarks = await dao.findBooksmarkByUser(user);
+        const bookmarks = await dao.findBookmarksByUser(user);
         res.json(bookmarks);
     }
 
@@ -35,7 +35,6 @@ const BookmarksController = (app) => {
             res.json(false)
         }
     }
-
 
     app.post('/api/bookmarks', createBookmark);
     app.get('/api/users/:user/bookmarks', findBookmarksByUser);
