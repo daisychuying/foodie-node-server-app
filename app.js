@@ -30,8 +30,7 @@ const app = express();
 // }))
 
 app.use(cors({
-    credentials: true,
-    origin: 'https://6396a5ef1800390009574891--foodie-react-web.netlify.app/'
+    credentials: true
 }))
 
 app.use(session({
