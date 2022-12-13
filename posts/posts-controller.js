@@ -55,7 +55,7 @@ const PostsController = (app) => {
     app.get('/api/posts', findAllPosts);
     app.post('/api/posts', createPost);
     app.delete('/api/posts/:postID', deletePost);
-    app.get('/api/posts/users/:user', findPostsByUser);
+    app.get('/api/posts/users/:uid', findPostsByUser);
     app.get('/api/posts/:postID', findPostByID);
 
 }

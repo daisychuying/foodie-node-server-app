@@ -81,6 +81,8 @@ const UsersController = (app) => {
     }
 
 
+
+
     app.get('/api/users', findAllUsers)
     app.get('/api/users/:uid', findUserById)
     app.post('/api/users', createUser)
