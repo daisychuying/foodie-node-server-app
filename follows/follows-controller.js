@@ -2,8 +2,6 @@ import * as dao from './follows-dao.js'
 const FollowsController = (app) => {
     const followUser = async (req, res) => {
         const follow = req.body
-        const currentUser = req.session['currentUser']
-        follow.follower = currentUser._id
         const actualFollow = await dao.followUser(follow)
         res.json(actualFollow)
     }
