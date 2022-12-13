@@ -3,8 +3,8 @@ import * as dao from "./bookmarks-dao.js"
 const BookmarksController = (app) => {
     const createBookmark = async (req, res) => {
         const bookmark = req.body;
-        const currentUser = req.session['currentUser'];
-        bookmark.user = currentUser._id;
+        // const currentUser = req.session['currentUser'];
+        // bookmark.user = currentUser._id;
         const actualBookmark = await dao.createBookmark(bookmark);
         res.json(actualBookmark);
     }
