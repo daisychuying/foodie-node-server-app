@@ -1,5 +1,6 @@
 import * as dao from "./posts-dao.js"
 import cloudinary from "../utils/cloudinary.js";
+import {findPostBySearchTerm} from "./posts-dao.js";
 
 
 const PostsController = (app) => {
@@ -51,12 +52,19 @@ const PostsController = (app) => {
         res.json(posts)
     }
 
+    const findPostBySearchTerm = async (req, res) => {
+        const {searchTerm} = req.params;
+        const posts = await dao.findPostBySearchTerm(searchTerm);
+        res.json(posts);
+    }
+
 
     app.get('/api/posts', findAllPosts);
     app.post('/api/posts', createPost);
     app.delete('/api/posts/:postID', deletePost);
     app.get('/api/posts/users/:uid', findPostsByUser);
     app.get('/api/posts/:postID', findPostByID);
+    app.get('/api/posts/search/:searchTerm', findPostBySearchTerm);
 
 }
 

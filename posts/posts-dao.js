@@ -17,3 +17,6 @@ export const findPostByID = (postID) =>
 
 export const findAllPosts = async () =>
     await postsModel.find().sort({$natural:-1})
+
+export const findPostBySearchTerm = async (searchTerm) =>
+    await postsModel.find({title: {$regex: searchTerm, $options: 'i'}});
