@@ -16,4 +16,4 @@ export const findPostByID = (postID) =>
         .exec()
 
 export const findAllPosts = async () =>
-    await postsModel.find()
+    await postsModel.find().sort({$natural:-1})

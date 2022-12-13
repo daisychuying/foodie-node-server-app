@@ -9,6 +9,7 @@ const postsSchema = mongoose.Schema({
     ingredients: {type: String},
     readyInMinutes: {type: String},
     instructions: {type: String},
+    image: {type: String}
 }, {collection: "posts"})
 
 export default postsSchema;

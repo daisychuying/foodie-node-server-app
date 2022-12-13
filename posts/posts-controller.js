@@ -1,13 +1,27 @@
 import * as dao from "./posts-dao.js"
+import cloudinary from "../utils/cloudinary.js";
 
 
 const PostsController = (app) => {
     const createPost = async (req, res) => {
         const post = req.body;
-        const currentUser = req.session['currentUser'];
-        post.author = currentUser._id;
-        const actualPost = await dao.createPost(post);
-        res.json(actualPost);
+        // const currentUser = req.session['currentUser'];
+        // console.log(currentUser)
+        // post.author = currentUser._id;
+        // const actualPost = await dao.createPost(post);
+        // res.json(actualPost);
+        // console.log(post);
+        try {
+            const fileStr = post.image;
+            const uploadedResponse = await cloudinary.uploader.upload(
+                fileStr, {upload_preset: 'dev_setups'}
+            )
+            post.image = uploadedResponse.url;
+            const actualPost = await dao.createPost(post);
+            res.json(actualPost);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const deletePost = async (req, res) => {
