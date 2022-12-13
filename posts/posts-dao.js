@@ -6,8 +6,8 @@ export const createPost = (post) =>
 export const deletePost = (postID) =>
     postsModel.deleteOne({_id: postID})
 
-export const findPostsByUser = (user) =>
-    postsModel.find({user}).sort({$natural:-1})
+export const findPostsByUser = (uid) =>
+    postsModel.find({author: uid}).sort({$natural:-1})
 
 export const findPostByID = (postID) =>
     postsModel

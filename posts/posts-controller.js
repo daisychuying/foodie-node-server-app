@@ -31,8 +31,8 @@ const PostsController = (app) => {
     }
 
     const findPostsByUser = async (req, res) => {
-        const user = req.params.user;
-        const posts = await dao.findPostsByUser(user);
+        const uid = req.params.uid;
+        const posts = await dao.findPostsByUser(uid);
         res.json(posts);
     }
 

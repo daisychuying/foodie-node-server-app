@@ -11,7 +11,7 @@ export const findUserByCredentials = async (username, password) =>
         {password: false})
 
 export const findAllUsers = async () =>
-    await usersModel.find()
+    await usersModel.find({role: {$not: {$regex:'ADMIN'}}})
 
 export const deleteUser = async (uid) =>
     await usersModel.deleteOne({_id: uid})
