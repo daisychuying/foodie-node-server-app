@@ -1,5 +1,4 @@
 import * as dao from "./questions-dao.js";
-import {findQuestionByQuestionID} from "./questions-dao.js";
 
 const QuestionsController = (app) => {
     const createQuestion = async (req, res) => {
