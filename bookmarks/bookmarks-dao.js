@@ -11,3 +11,9 @@ export const findBookmarksByUser = (user) =>
 
 export const findUserHasBookmarked = (user, recipeID) =>
     bookmarksModel.findOne({user, recipeID})
+
+export const findTopBookmarked = () =>
+    bookmarksModel.aggregate([{$group: {_id:"$recipeID", count: {$sum:1}}}, {$sort: {count: -1}}]).limit(1);
+
+export const findBookmarkByRecipeID = (recipeID) =>
+    bookmarksModel.findOne({recipeID})

@@ -1,4 +1,5 @@
 import * as dao from "./bookmarks-dao.js"
+import {findBookmarkByRecipeID, findTopBookmarked} from "./bookmarks-dao.js";
 
 const BookmarksController = (app) => {
     const createBookmark = async (req, res) => {
@@ -36,10 +37,17 @@ const BookmarksController = (app) => {
         }
     }
 
+    const findTopBookmarked = async (req, res) => {
+        const top = await dao.findTopBookmarked();
+        const bookmark = await dao.findBookmarkByRecipeID(top[0]._id);
+        res.json(bookmark);
+    }
+
     app.post('/api/bookmarks', createBookmark);
     app.get('/api/users/:user/bookmarks', findBookmarksByUser);
     app.get('/api/users/:user/bookmarks/:recipeID', findUserHasBookmarked);
     app.delete('/api/users/:user/bookmarks/:recipeID', deleteBookmark);
+    app.get('/api/bookmarks/top', findTopBookmarked);
 }
 
 export default BookmarksController;
