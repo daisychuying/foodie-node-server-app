@@ -9,7 +9,7 @@ const usersSchema = mongoose.Schema({
     introduction: String,
     certifiedChefID: {type: String},
     foodieFavorite: {type: String, enum:['', 'CHINESE', 'JAPANESE','AMERICAN','ITALIAN','MEXICAN', 'SPANISH', 'THAI', 'FRENCH', 'KOREAN', 'BRITISH', 'MEDITERRANEAN', 'INDIAN', 'CARIBBEAN', 'GREEK', 'VIETNAMESE','AFRICAN']},
-    adminsChoice:{type: Number},
+    adminsChoice:{type: String},
     role: {type: String, enum: ['ADMIN', 'CHEF', 'FOODIE']}
 }, {collection: 'users'})
 
