@@ -10,7 +10,7 @@ import ReviewsController from "./reviews/reviews-controller.js";
 import FollowsController from "./follows/follows-controller.js";
 import PostsController from "./posts/posts-controller.js";
 
-import cloudinary from "./utils/cloudinary.js";
+import QuestionsController from "./questions/questions-controller.js";
 
 const options = {
     useNewUrlParser: true,
@@ -48,5 +48,6 @@ BookmarksController(app);
 ReviewsController(app);
 FollowsController(app);
 PostsController(app);
+QuestionsController(app);
 
 app.listen(process.env.PORT || 4000);
