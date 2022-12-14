@@ -3,10 +3,9 @@ import * as dao from "./reviews-dao.js"
 const ReviewsController = (app) => {
     const createReview = async (req, res) => {
         const review = req.body;
-        // const currentUser = req.session['currentUser'];
-        // review.author = currentUser._id;
         const actualReview = await dao.createReview(review);
-        res.json(actualReview);
+        const fullReview = await dao.findReviewByID(actualReview._id)
+        res.json(fullReview);
     }
 
     const findReviewsByRecipe = async (req, res) => {
