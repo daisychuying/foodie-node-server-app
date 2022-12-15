@@ -1,17 +1,10 @@
 import * as dao from "./posts-dao.js"
 import cloudinary from "../utils/cloudinary.js";
-import {findPostBySearchTerm} from "./posts-dao.js";
 
 
 const PostsController = (app) => {
     const createPost = async (req, res) => {
         const post = req.body;
-        // const currentUser = req.session['currentUser'];
-        // console.log(currentUser)
-        // post.author = currentUser._id;
-        // const actualPost = await dao.createPost(post);
-        // res.json(actualPost);
-        // console.log(post);
         try {
             const fileStr = post.image;
             const uploadedResponse = await cloudinary.uploader.upload(
